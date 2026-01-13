@@ -1,24 +1,23 @@
 /**
- * EUDIPLO Demo Configuration
+ * EUDIPLO SDK Demo - Configuration
  *
- * ⚠️  UPDATE THESE VALUES to connect to your EUDIPLO server!
+ * ⚠️ UPDATE THESE VALUES to connect to your EUDIPLO server!
  *
- * You need a running EUDIPLO instance with:
+ * You need:
+ * - A running EUDIPLO instance
  * - A client with `verification:offer` permission
- * - A presentation config (e.g., `age-over-18`)
+ * - A presentation config ID
  *
- * See: https://openwallet-foundation-labs.github.io/eudiplo/latest/
+ * Docs: https://openwallet-foundation-labs.github.io/eudiplo/latest/
  */
 export const config = {
-  /** Base URL of your EUDIPLO server (e.g., 'https://your-server.com') */
+  // Your EUDIPLO server URL
   baseUrl: '',
 
-  /** Client ID for authentication */
+  // Client credentials
   clientId: '',
-
-  /** Client secret for authentication */
   clientSecret: '',
 
-  /** Presentation configuration ID (defines which credentials to request) */
+  // Presentation config (what credentials to request)
   configId: 'age-over-18',
 };

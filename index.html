@@ -3,109 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wine Shop - Age Verification Demo</title>
+  <title>EUDIPLO SDK Demo</title>
   <link rel="stylesheet" href="/src/styles.css">
 </head>
 <body>
-  <div class="shop">
-    <!-- Header -->
-    <header class="header">
-      <div class="logo">🍷 Vino Select</div>
-      <nav>
-        <a href="#">Shop</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </nav>
-    </header>
+  <div class="container">
+    <h1>🔐 EUDIPLO SDK Demo</h1>
+    <p class="subtitle">Test credential verification with EUDI wallets</p>
 
-    <!-- Product Section -->
-    <main class="main">
-      <section class="product" id="productSection">
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=500&fit=crop" alt="Premium Red Wine">
-        </div>
-        <div class="product-info">
-          <span class="product-badge">Best Seller</span>
-          <h1>Château Margaux 2018</h1>
-          <p class="product-description">
-            An exceptional vintage with notes of blackcurrant, violet, and subtle oak. 
-            Perfect for special occasions or as a collector's item.
-          </p>
-          <div class="product-meta">
-            <span>🍇 Cabernet Sauvignon</span>
-            <span>📍 Bordeaux, France</span>
-            <span>🌡️ Serve at 16-18°C</span>
-          </div>
-          <div class="product-price">€89.00</div>
-          <button id="buyButton" class="btn-primary">Add to Cart</button>
-          <p class="age-notice">🔞 You must be 18+ to purchase alcohol</p>
-        </div>
-      </section>
+    <div class="card">
+      <p>
+        This minimal demo shows how to use the <code>@eudiplo/sdk-core</code> package
+        to request and verify credentials from EUDI wallets.
+      </p>
 
-      <!-- Age Verification Modal -->
-      <div id="verificationModal" class="modal hidden">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2>🔐 Age Verification Required</h2>
-            <p>Please verify your age using your EUDI wallet to continue</p>
-          </div>
-          
-          <div id="qrSection" class="qr-section">
-            <canvas id="qrCode"></canvas>
-            <p class="qr-instruction">Scan with your EUDI wallet app</p>
-            <div class="status" id="status">
-              <span class="status-dot"></span>
-              <span id="statusText">Waiting for verification...</span>
-            </div>
-          </div>
-
-          <div id="successSection" class="success-section hidden">
-            <div class="success-icon">✅</div>
-            <h3>Age Verified!</h3>
-            <p id="welcomeMessage">Welcome! You can now purchase alcohol.</p>
-            <button id="continueButton" class="btn-primary">Continue to Checkout</button>
-          </div>
-
-          <div id="errorSection" class="error-section hidden">
-            <div class="error-icon">❌</div>
-            <h3>Verification Failed</h3>
-            <p id="errorMessage">Unable to verify your age.</p>
-            <button id="retryButton" class="btn-secondary">Try Again</button>
-          </div>
-
-          <button id="closeModal" class="modal-close">×</button>
-        </div>
+      <div class="buttons">
+        <button id="verifyBtn" class="btn-primary">Start Verification</button>
+        <button id="cancelBtn" class="btn-secondary">Cancel</button>
       </div>
 
-      <!-- Checkout Success -->
-      <section id="checkoutSection" class="checkout-section hidden">
-        <div class="checkout-success">
-          <div class="success-animation">🎉</div>
-          <h2>Thank you for your order!</h2>
-          <p>Your Château Margaux 2018 will be shipped within 2-3 business days.</p>
-          <div class="order-summary">
-            <div class="order-item">
-              <span>Château Margaux 2018</span>
-              <span>€89.00</span>
-            </div>
-            <div class="order-item">
-              <span>Shipping</span>
-              <span>Free</span>
-            </div>
-            <div class="order-total">
-              <span>Total</span>
-              <span>€89.00</span>
-            </div>
-          </div>
-          <button id="newOrderButton" class="btn-secondary">Back to Shop</button>
-        </div>
-      </section>
-    </main>
+      <div id="qrContainer"></div>
+      <div id="status"></div>
+      <div id="result" class="result"></div>
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>Demo powered by <a href="https://github.com/openwallet-foundation-labs/eudiplo" target="_blank">EUDIPLO</a></p>
-      <p class="disclaimer">This is a demo application. No real purchases are made.</p>
+    <footer>
+      <p>
+        Built with <a href="https://github.com/openwallet-foundation-labs/eudiplo" target="_blank">EUDIPLO</a>
+        · <a href="https://github.com/cre8/eudiplo-demo" target="_blank">View source</a>
+      </p>
     </footer>
   </div>
 

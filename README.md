@@ -2,9 +2,9 @@
 
 A realistic demo showing age verification for alcohol purchases using EUDI wallet credentials.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/openwallet-foundation-labs/eudiplo-sdk-demo)
+> ⚠️ **Demo Only** - This project is for demonstration and testing purposes only. **Do not use in production!** Client credentials are stored in frontend code, which is not secure. In production, verification requests should be initiated from a secure backend server.
 
-![Wine Shop Demo](https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=400&fit=crop)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/cre8/eudiplo-demo)
 
 ## 🍷 What This Demo Shows
 
@@ -18,14 +18,27 @@ A wine shop checkout flow that requires age verification before purchase:
 
 ## 🚀 Quick Start
 
+First, configure your EUDIPLO server credentials in [`src/config.ts`](src/config.ts), then:
+
 ```bash
 npm install
 npm run dev
 ```
 
-Then click ⚙️ to configure your EUDIPLO server credentials.
+Click "Add to Cart" and scan the QR code with your EUDI wallet.
 
-## Prerequisites
+## 🔧 Running Your Own Instance
+
+To run with your own EUDIPLO server, update the credentials in [`src/config.ts`](src/config.ts):
+
+```typescript
+export const config = {
+  baseUrl: 'https://your-server.com',
+  clientId: 'your-client',
+  clientSecret: 'your-secret',
+  configId: 'age-over-18',
+};
+```
 
 You need a running EUDIPLO instance with:
 
@@ -91,7 +104,8 @@ console.log('Verified!', session.credentials);
 
 - [EUDIPLO Documentation](https://openwallet-foundation-labs.github.io/eudiplo/latest/)
 - [SDK Reference](https://www.npmjs.com/package/@eudiplo/sdk-core)
-- [GitHub Repository](https://github.com/openwallet-foundation-labs/eudiplo)
+- [EUDIPLO Repository](https://github.com/openwallet-foundation-labs/eudiplo)
+- [This Demo on GitHub](https://github.com/cre8/eudiplo-demo)
 
 ## License
 

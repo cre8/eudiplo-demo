@@ -1,25 +1,41 @@
 import { verify } from '@eudiplo/sdk-core';
 import QRCode from 'qrcode';
+import { config } from './config.js';
 
 // DOM helpers
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 
 // State
 let abortController: AbortController | null = null;
+let configValid = false;
 
-// Hardcoded demo credentials for easy testing
-const DEMO_CONFIG = {
-  baseUrl: 'https://demo.eudiplo.dev',
-  clientId: 'demo-wine-shop',
-  clientSecret: 'demo-secret-key-2024',
-  configId: 'age-over-18',
-};
-
-function getConfig() {
-  return DEMO_CONFIG;
+// Config validation
+function validateConfig(): boolean {
+  const missing: string[] = [];
+  if (!config.baseUrl) missing.push('baseUrl');
+  if (!config.clientId) missing.push('clientId');
+  if (!config.clientSecret) missing.push('clientSecret');
+  if (!config.configId) missing.push('configId');
+  return missing.length === 0;
 }
 
-// Config is now hardcoded for demo purposes
+function showConfigWarning() {
+  const banner = document.createElement('div');
+  banner.id = 'configWarning';
+  banner.innerHTML = `
+    <div class="config-warning">
+      <strong>⚠️ Demo not configured</strong>
+      <p>Please update <code>src/config.ts</code> with your EUDIPLO server credentials to use this demo.</p>
+      <a href="https://github.com/cre8/eudiplo-demo#-running-your-own-instance" target="_blank">See setup instructions →</a>
+    </div>
+  `;
+  document.body.prepend(banner);
+  
+  // Disable the buy button
+  const buyButton = $<HTMLButtonElement>('buyButton');
+  buyButton.disabled = true;
+  buyButton.title = 'Configure src/config.ts first';
+}
 
 // Modal helpers
 function showModal() {
@@ -64,7 +80,10 @@ function resetToShop() {
 
 // Buy button - triggers age verification
 $('buyButton').addEventListener('click', async () => {
-  const config = getConfig();
+  if (!configValid) {
+    alert('Please configure src/config.ts with your EUDIPLO server credentials first.');
+    return;
+  }
 
   showModal();
   $<HTMLSpanElement>('statusText').textContent = 'Creating verification request...';
@@ -145,5 +164,8 @@ $('verificationModal').addEventListener('click', (e) => {
   }
 });
 
-// Initialize
-loadConfigForm();
+// Initialize - check config on page load
+configValid = validateConfig();
+if (!configValid) {
+  showConfigWarning();
+}
